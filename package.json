@@ -1,0 +1,12 @@
+{
+  "name": "snes-rom-hack-creator",
+  "version": "1.0.0",
+  "description": "Project for creating SNES ROM hacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1"
+  },
+  "dependencies": {},
+  "author": "JosephPages",
+  "license": "ISC"
+}
