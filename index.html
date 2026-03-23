@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SNES RomHack Creator</title>
+    <link href="src/style.css" rel="stylesheet" type="text/css" />
+    <script src="src/ROMParser.js"></script>
+    <script src="src/ImageExtractor.js"></script>
+    <script src="src/ScriptParser.js"></script>
+    <script src="src/FileService.js"></script>
+    <script src="src/EditorService.js"></script>
+  </head>
+  <body onload="editorService.initializeEditor()">
+    <div class="main">
+      <div class="header componentBox">
+        <label>🎮 SNES RomHack Creator</label>
+        <p>Advanced ROM Editor for SNES Games</p>
+      </div>
+
+      <div class="editor componentBox">
+        <!-- ROM Upload Section -->
+        <div class="section">
+          <h2>1. Load ROM</h2>
+          <div class="field">
+            <label for="romFile" class="button">Select SNES ROM (.smc, .sfc)</label>
+            <input id="romFile" type="file" accept=".smc,.sfc,.bin"/>
+          </div>
+          <div class="result">
+            <label id="romStatus"></label>
+          </div>
+        </div>
+
+        <!-- Image/Sprite Viewer Section -->
+        <div class="section">
+          <h2>2. Image & Sprite Viewer</h2>
+          <div class="tabs">
+            <button class="tab-button active" onclick="editorService.switchTab('images')">Sprites & Images</button>
+            <button class="tab-button" onclick="editorService.switchTab('palettes')">Palettes</button>
+            <button class="tab-button" onclick="editorService.switchTab('tiles')">Tiles</button>
+          </div>
+          <div id="images-tab" class="tab-content active">
+            <canvas id="imageCanvas" width="400" height="400"></canvas>
+            <div class="controls">
+              <button onclick="editorService.exportImage()">Export Image</button>
+              <button onclick="editorService.importImage()">Import Image</button>
+              <input type="file" id="imageImport" accept="image/png,image/bmp" style="display:none">
+            </div>
+          </div>
+          <div id="palettes-tab" class="tab-content">
+            <div id="paletteViewer"></div>
+          </div>
+          <div id="tiles-tab" class="tab-content">
+            <canvas id="tilesCanvas" width="256" height="256"></canvas>
+          </div>
+        </div>
+
+        <!-- Script/Data Viewer Section -->
+        <div class="section">
+          <h2>3. Scripts & Data</h2>
+          <textarea id="scriptEditor" placeholder="Scripts and data will appear here..."></textarea>
+          <div class="controls">
+            <button onclick="editorService.exportData()">Export Data</button>
+            <button onclick="editorService.importData()">Import Data</button>
+          </div>
+        </div>
+
+        <!-- ROM Manager Section -->
+        <div class="section">
+          <h2>4. Generate Modified ROM</h2>
+          <div class="controls">
+            <button class="button" onclick="editorService.generateROM()">Generate ROM</button>
+            <button class="button" onclick="editorService.downloadROM()">Download ROM</button>
+          </div>
+          <div class="result">
+            <label id="message"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer componentBox">
+        <a href="https://github.com/JosephPages/SNES-RomHack-Creator" target="_blank">
+          GitHub Repository
+        </a>
+        <label class="header">
+          SNES RomHack Creator v1.0, &copy; 2026
+        </label>
+      </div>
+    </div>
+  </body>
+</html>
